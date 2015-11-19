@@ -1,0 +1,24 @@
+html,
+body{
+  width: 100%;
+  height: 100%;
+  background: white;
+}
+
+#map-pane {
+  float: left;
+  width: 100%;
+  height: 100%;
+}
+
+/*show actions in a horizontal way*/
+li {
+  display: inline-block;
+}
+
+/* do not show button to import GPX action */
+input[type="file"],
+input[type="button"] {
+  position: fixed;
+  top: -1000px;
+}
