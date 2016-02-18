@@ -127,7 +127,7 @@ L.Control.Table = L.Control.extend({
 
     var unselect = this.options.unselectedFeature;
     var select = this.options.selectedFeature;
-    if(e.layer.options.fillColor === select.color){ // it is selected
+    if(e.layer.options.fillColor === select.fillColor){ // it is selected
       e.layer.setStyle(unselect);
       this.unstyleRow(fid);
       this.selection.delete(fid);
