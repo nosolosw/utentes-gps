@@ -279,10 +279,22 @@ L.Control.Table = L.Control.extend({
   },
 
   getPolygonFromPoints: function(){
+    // TODO: allow multipolygons and points
+    var polygon = {
+      "type": "Feature",
+      "properties": {},
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[]]
+      }
+    };
+
     var myarray = [];
     this.selection.forEach(function(value, key){
       myarray.push(value);
     });
+
+    if (myarray.length < 3) return polygon;
 
     var code = this.options.featCodeProp;
     myarray.sort(function(a, b){
@@ -294,15 +306,6 @@ L.Control.Table = L.Control.extend({
       return 0;
     });
 
-    // TODO: allow multipolygons and points
-    var polygon = {
-      "type": "Feature",
-      "properties": {},
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [[]]
-      }
-    };
     var fidProp = this.options.featIdProp;
     var codeProp = this.options.featCodeProp;
     myarray.forEach(function(feat){
