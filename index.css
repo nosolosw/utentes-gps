@@ -11,7 +11,12 @@ body{
   height: 100%;
 }
 
-/*show actions in a horizontal way*/
+/* make actions more visually strong */
+ul {
+  font-size: 1rem;
+}
+
+/* show actions in a horizontal way */
 li {
   display: inline-block;
 }
