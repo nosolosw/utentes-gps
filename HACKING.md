@@ -1,1 +1,1 @@
-[ ] prevent errors from select an action that cannot be executed
+[ ] input-importgpx listeners, _sometimes_, does not work.
