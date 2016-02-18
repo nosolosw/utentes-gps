@@ -1,23 +1,23 @@
 L.Control.Table = L.Control.extend({
   options: {
-    position: 'topright',
-    featIdProp: 'fid', // be sure it doesn't conflict with a GeoJSON property
-    featCodeProp: 'name',
+    position:      'topright',
+    featIdProp:    'fid', // be sure it doesn't conflict with a GeoJSON property
+    featCodeProp:  'name',
     featCodeTitle: 'Código',
     unselectedFeature: {
-      radius: 8,
-      fillColor: "#ff7800",
-      color: "#000",
-      weight: 1,
-      opacity: .4,
+      radius:      8,
+      fillColor:   "#ff7800",
+      color:       "#000",
+      weight:      1,
+      opacity:      .4,
       fillOpacity: 0.4
     },
     selectedFeature: {
-      radius: 8,
-      fillColor: "#F00",
-      color: "#000",
-      weight: 1,
-      opacity: 1,
+      radius:      8,
+      fillColor:   "#F00",
+      color:       "#000",
+      weight:      1,
+      opacity:     1,
       fillOpacity: 0.8
     }
   },
@@ -78,9 +78,9 @@ L.Control.Table = L.Control.extend({
   },
 
   deleteSelected: function(){
-    this.selection.forEach(function(value, key){
+    this.selection.forEach(function(value, key, map){
       this.geoJsonLayer.removeLayer(value.properties[this.options.featIdProp]);
-    });
+    }, this);
     this.selection.clear();
   },
 
