@@ -9,7 +9,10 @@ var MakePolygon = L.ToolbarAction.extend({
 
     addHooks: function () {
         var polygon = table.makePolygon();
-        map.fitBounds(polygon.getBounds()).setMaxBounds(geoJsonLayer.getBounds().pad(0.5));
+        if(polygon.getBounds().isValid()){
+          map.fitBounds(polygon.getBounds()).setMaxBounds(geoJsonLayer.getBounds().pad(0.5));
+        }
+
     }
 
 });
