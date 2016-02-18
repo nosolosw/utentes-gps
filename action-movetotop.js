@@ -9,7 +9,6 @@ var MoveToTop = L.ToolbarAction.extend({
 
   addHooks: function () {
     table.moveToTop();
-    map.fitBounds(L.geoJson(table.getPolygonFromPoints()).getBounds()).setMaxBounds(geoJsonLayer.getBounds().pad(0.5));
   }
 
 });
