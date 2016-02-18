@@ -3,73 +3,32 @@
 <head>
   <meta charset="utf-8">
   <title>Utentes GPS App</title>
-  <link rel="stylesheet" type="text/css" href="reset.css">
-
-
-  <!-- leaflet -->
-  <link rel="stylesheet" type="text/css" href="lib/leaflet/leaflet.css">
-  <script src="lib/leaflet/leaflet.js"></script>
-
-  <!-- leaflet-table -->
-  <link rel="stylesheet" type="text/css" href="lib/leaflet-table/src/leaflet-table.css">
-  <script src='lib/leaflet-table/src/leaflet-table.js'></script>
-
-  <!-- table actions -->
-  <link rel="stylesheet" type="text/css" href="lib/leaflet-toolbar/leaflet.toolbar.css">
-  <link rel="stylesheet" type="text/css" href="lib/font-awesome-4.4.0/css/font-awesome.min.css">
-  <script src="lib/leaflet-toolbar/leaflet.toolbar.js"></script>
-  <script src='src/action-clear.js'></script>
-  <script src='src/action-delete.js'></script>
-  <script src="lib/jquery-1.11.3.min.js"></script>
-  <script src="lib/togeojson.js"></script>
-  <script src='src/action-importgpx.js'></script>
-  <script src='src/action-makepolygon.js'></script>
-  <script src='src/action-movetotop.js'></script>
-  <script src='src/action-savetoapi.js'></script>
-
+  <link rel="stylesheet" type="text/css" href="vendor/reset/reset.css">
+  <link rel="stylesheet" type="text/css" href="vendor/leaflet/leaflet.css">
+  <link rel="stylesheet" type="text/css" href="vendor/leaflet-table/src/leaflet-table.css">
+  <link rel="stylesheet" type="text/css" href="vendor/leaflet-toolbar/leaflet.toolbar.css">
+  <link rel="stylesheet" type="text/css" href="vendor/font-awesome-4.4.0/css/font-awesome.min.css">
   <link rel="stylesheet" type="text/css" href="index.css">
 
 </head>
 <body>
+
   <div id="map-pane">
     <input id="input-importgpx" type="file" accept=".gpx, .GPX" />
   </div>
 
-  <script type="text/javascript">
+  <script src="vendor/jquery/jquery-1.11.3.min.js"></script>
+  <script src="vendor/leaflet/leaflet.js"></script>
+  <script src='vendor/leaflet-table/src/leaflet-table.js'></script>
+  <script src="vendor/leaflet-toolbar/leaflet.toolbar.js"></script>
+  <script src="vendor/togeojson/togeojson.js"></script>
+  <script src='action-importgpx.js'></script>
+  <script src='action-clear.js'></script>
+  <script src='action-delete.js'></script>
+  <script src='action-makepolygon.js'></script>
+  <script src='action-movetotop.js'></script>
+  <script src='action-savetoapi.js'></script>
+  <script src="index.js"></script>
 
-  var map = L.map('map-pane').setView([-12.965, 40.508], 16);
-  L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-    attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-  }).addTo(map);
-
-  // TODO: take it from leaflet-table
-  var unselectedFeature = {
-    radius: 8,
-    fillColor: "#ff7800",
-    color: "#000",
-    weight: 1,
-    opacity: .4,
-    fillOpacity: 0.4
-  };
-
-  var geoJsonLayer = L.geoJson([],
-    {
-      pointToLayer: function(feature, latlng){
-        return L.circleMarker(latlng, unselectedFeature);
-      },
-      onEachFeature(feature, layer){
-        // on adding each feat
-      },
-    }
-  ).addTo(map);
-
-  var actionsToolbar = new L.Toolbar.Control({
-    position: 'topright',
-    actions: [ImportGPX, MakePolygon, Clear, MoveToTop, DeleteSelected, SaveToAPI]
-  }).addTo(map);
-
-  var table = L.control.table(geoJsonLayer).addTo(map);
-
-  </script>
 </body>
 </html>
