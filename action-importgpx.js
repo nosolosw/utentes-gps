@@ -24,6 +24,9 @@ var ImportGPX = L.ToolbarAction.extend({
 
     // set up what happens on finish reading
     reader.onloadend = (function(e){
+      // reset value of input.file element
+      $('#input-importgpx').val('');
+
       var gpx = (new DOMParser()).parseFromString(e.target.result, 'text/xml');
       var myGeoJSON = toGeoJSON.gpx(gpx);
 
