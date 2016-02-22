@@ -9,9 +9,10 @@ var MakePolygon = L.ToolbarAction.extend({
 
     addHooks: function () {
         var polygon = table.makePolygon();
-        if(polygon.getBounds().isValid()){
-          map.fitBounds(polygon.getBounds()).setMaxBounds(geoJsonLayer.getBounds().pad(0.5));
-        }
+        // TODO how a toolbar action may have access to the map?
+        // if(polygon.getBounds().isValid()){
+        //   map.fitBounds(polygon.getBounds()).setMaxBounds(geoJsonLayer.getBounds().pad(0.5));
+        // }
 
     }
 

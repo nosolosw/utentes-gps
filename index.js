@@ -24,9 +24,34 @@ var geoJsonLayer = L.geoJson([],
   }
 ).addTo(map);
 
+var MySaveToAPI = SaveToAPI.extend({
+  addHooks: function () {
+    console.log('save to API');
+  }
+});
+
+var MyImportGPX = ImportGPX.extend({
+
+    initialize: function(){
+      var action = this;
+      $('#input-importgpx').on('change', function(e){
+        action.convertToGeoJSON(e.target.files, geoJsonLayer, map);
+        // reset value of input.file element for the change event
+        // to be triggered if the user loads again the same file
+        $('#input-importgpx').val('');
+      });
+    },
+
+    addHooks: function () {
+      // make hidden input.file to open
+      $('#input-importgpx').trigger('click');
+    },
+
+});
+
 var actionsToolbar = new L.Toolbar.Control({
   position: 'topright',
-  actions: [ImportGPX, MakePolygon, Clear, MoveToTop, DeleteSelected, SaveToAPI]
+  actions: [MyImportGPX, MakePolygon, Clear, MoveToTop, DeleteSelected, MySaveToAPI]
 }).addTo(map);
 
 var table = L.control.table(geoJsonLayer).addTo(map);

@@ -7,25 +7,12 @@ var ImportGPX = L.ToolbarAction.extend({
     }
   },
 
-  initialize: function(){
-    var action = this;
-    $('#input-importgpx').on('change', function(e){
-      action.convertToGeoJSON(e.target.files);
-    });
-  },
-
-  addHooks: function () {
-    $('#input-importgpx').trigger('click');
-  },
-
-  convertToGeoJSON: function(files){
+  convertToGeoJSON: function(files, geoLayer, map){
     if(files.length === 0) return;
     var reader = new FileReader();
 
     // set up what happens on finish reading
     reader.onloadend = (function(e){
-      // reset value of input.file element
-      $('#input-importgpx').val('');
 
       var gpx = (new DOMParser()).parseFromString(e.target.result, 'text/xml');
       var myGeoJSON = toGeoJSON.gpx(gpx);
@@ -34,11 +21,13 @@ var ImportGPX = L.ToolbarAction.extend({
       // (ie: it does not import "ele" or "cmt")
       // research or just use those that imports : name, time, desc
 
-      geoJsonLayer.clearLayers();
+      geoLayer.clearLayers();
 
       // would populate data and idx
-      geoJsonLayer.addData(myGeoJSON);
-      map.fitBounds(geoJsonLayer.getBounds()).setMaxBounds(geoJsonLayer.getBounds().pad(0.5));
+      geoLayer.addData(myGeoJSON);
+
+      // TODO how a toolbar action may have access to the map?
+      map.fitBounds(geoLayer.getBounds()).setMaxBounds(geoLayer.getBounds().pad(0.5));
 
     });
 

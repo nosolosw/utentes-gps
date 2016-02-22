@@ -7,8 +7,4 @@ var SaveToAPI = L.ToolbarAction.extend({
         }
     },
 
-    addHooks: function () {
-        console.log('save to API');
-    }
-
 });
