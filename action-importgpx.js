@@ -19,6 +19,7 @@ var ImportGPX = L.ToolbarAction.extend({
   },
 
   convertToGeoJSON: function(files){
+    if(files.length === 0) return;
     var reader = new FileReader();
 
     // set up what happens on finish reading
