@@ -1,8 +1,5 @@
-[ ] Drop handsontable dependency
-
 ## Finish API
 
-[x] select by cell and feature
 [x] edit cells
 [x] clear selection
 [x] move selection to top
